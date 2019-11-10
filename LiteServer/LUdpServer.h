@@ -1,3 +1,9 @@
+//
+// Created by 李雷雨 on 2019/10/20.
+//
+
+#ifndef LITESERVER_LUDPSERVER_H
+#define LITESERVER_LUDPSERVER_H
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <string>
@@ -9,23 +15,22 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-using namespace std;
-
-class LTcpServer
-{
+class LUdpServer {
 public:
-    explicit LTcpServer(short port);
-    ~LTcpServer();
-    sockaddr_in startServer();
-protected:
-    void initServer();
-    void create();
-    void bind();
-    void listen();
+    explicit LUdpServer(short port);
+    LUdpServer();
+    virtual ~LUdpServer();
+
+    bool create();
+    bool bind();
+    bool receive();
 
 private:
     short m_port; //使用的端口号
     std::string m_addr;   //绑定的ip地址
     sockaddr_in m_sockaddrin;
-    int m_sSocket;     //服务器socket
+    int m_sSocket;
 };
+
+
+#endif //LITESERVER_LUDPSERVER_H
